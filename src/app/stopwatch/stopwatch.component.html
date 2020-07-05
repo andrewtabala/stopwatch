@@ -1,20 +1,44 @@
 
-<div class="time_display" >{{hours_str}}:{{minutes_str}}:{{seconds_str}}</div>
+<div class="time_display" *ngIf="isRainbow" >
+    <span [ngStyle]="apply_color()">{{hours_str}}</span>
+    <span [ngStyle]="apply_color()">:</span>
+    <span [ngStyle]="apply_color()">{{minutes_str}}</span>
+    <span [ngStyle]="apply_color()">:</span>
+    <span [ngStyle]="apply_color()">{{seconds_str}}</span>
+</div>
+<div class="time_display" *ngIf="!isRainbow" >{{hours_str}}:{{minutes_str}}:{{seconds_str}}</div>
 
 <div class="button_div">
     <button class="start_stop_button" (click)="toggleTimer()">Start / Stop</button>
     <button class="wait_button" (dblclick)="waitTimer()">Wait</button>
     <button class="reset_button" (click)="resetTimer()">Reset</button>
 </div>
-<br/><br/><br/><br/><br/>
+<br/><br/>
 <h1 class="bonus_h1">BONUS PART</h1>
 <h1 class="bonus_h2">BREAK THE UNIVERSE RULES AND CONTROL THE TIME</h1>
 <div class="button_div">
-    <button class="half_time_bonus_button" (click)="half_the_time()">0.5x</button>
-    <button class="normal_time_bonus_button" (click)="normal_time()">1x</button>
-    <button class="twice_time_bonus_button" (click)="twice_the_time()">2x</button>
+    <button class="half_time_bonus_button" (click)="change_time(2000)">0.5x</button>
+    <button class="normal_time_bonus_button" (click)="change_time(1000)">1x</button>
+    <button class="twice_time_bonus_button" (click)="change_time(500)">2x</button>
 </div>
 <br/>
 <div class="button_div">
-    <button class="extra_time_bonus_button" (click)="extra_time()">10x</button>
+    <button class="extra_time_bonus_button" (click)="change_time(100)">10x</button>
+</div>
+<br/>
+<div class="button_div">
+    <button class="rainbow_bonus_button" (click)="rainbow_toggle()">
+        <span style="color: red;">R</span>
+        <span style="color: orange;">A</span>
+        <span style="color: yellow;">I</span>
+        <span style="color: green;">N</span>
+        <span style="color: lightblue;">B</span>
+        <span style="color: blue;">O</span>
+        <span style="color: purple;">W </span>
+        <span> </span>
+        <span style="color: red;">M</span>
+        <span style="color: orange;">O</span>
+        <span style="color: yellow;">D</span>
+        <span style="color: green;">E</span>
+    </button>
 </div>
