@@ -16,6 +16,11 @@ export class StopwatchComponent implements OnInit {
 
   time_stamp: number = 1000
 
+  wait_timer;
+  interval: number = 300;
+  broken: boolean = false;
+  dbl: boolean = false;
+
   seconds: number = 0
   minutes: number = 0
   hours: number = 0
@@ -82,7 +87,19 @@ export class StopwatchComponent implements OnInit {
   // Wait button handler (just changes balue of isrunnign, timer is actually ticking ALL the time)
   // It would be too inefficient to fully stop and start timer every time user clicks Wait
   waitTimer() {
-    this.isRunning = !this.isRunning
+
+    if (!this.wait_timer) {
+      this.wait_timer = setTimeout(() => {
+        if (this.dbl) {
+          this.isRunning = !this.isRunning;
+          this.wait_timer = 0;
+          this.dbl = false;
+        }
+      }, this.interval)
+    }
+    else {
+      this.dbl = true;
+    }
   }
 
 
