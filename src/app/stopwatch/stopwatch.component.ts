@@ -92,9 +92,9 @@ export class StopwatchComponent implements OnInit {
       this.wait_timer = setTimeout(() => {
         if (this.dbl) {
           this.isRunning = !this.isRunning;
-          this.wait_timer = 0;
-          this.dbl = false;
         }
+        this.wait_timer = 0;
+        this.dbl = false;
       }, this.interval)
     }
     else {
